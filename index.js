@@ -1,13 +1,13 @@
 const express = require("express");
 const cors = require("cors");
-const mysql = require("mysql2");
+const mysql = require("mysql");
 const dotenv = require('dotenv');
 
 dotenv.config({ path: './.env' });
 const db = require("./config/db");
 
 const app = express();
-const port = 3000;
+const port = 5000;
 
 db.start.connect((error) => {
     if (error) {
@@ -32,3 +32,4 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
+
