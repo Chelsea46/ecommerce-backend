@@ -7,15 +7,15 @@ dotenv.config({ path: './.env' });
 const db = require("./config/db");
 
 const app = express();
-const port = 5000;
+const port = 3000;
 
-db.start.connect((error) => {
-    if (error) {
-        console.log(error);
-    } else {
-        console.log('MYSQL CONNECTED')
-    }
-})
+db.connect((error) => {
+  if (error) {
+    console.log('MYSQL CONNECTION ERROR: ' + error);
+  } else {
+    console.log('MYSQL is CONNECTED');
+  }
+});
 
 app.use(express.json());
 app.use(
@@ -32,4 +32,3 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
-

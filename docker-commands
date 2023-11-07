@@ -1,0 +1,12 @@
+images - docker image ls
+
+start projects in docker compose file - docker-compose up -d
+
+check container is running - docker ps
+
+check if container failed - docker ps -a
+
+to shut container down - docker-compose down
+
+
+localhost:8080

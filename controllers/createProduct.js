@@ -11,10 +11,11 @@ const createProduct = asyncHandler(async (req, res) => {
         description: req.body.description,
         image: req.body.image,
         recycled: req.body.recycled,
-        organic: req.body.organic
+        organic: req.body.organic,
+        price: req.body.price
     };
 
-    db.start.query('INSERT INTO items SET ?', product, (error, result) => {
+    db.query('INSERT INTO items SET ?', product, (error, result) => {
         if (error) {
             console.log(error);
             res.status(500).json({ success: false, message: 'Failed to add product' });
