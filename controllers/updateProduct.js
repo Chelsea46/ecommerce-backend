@@ -2,9 +2,9 @@ const asyncHandler = require('express-async-handler');
 const db = require('../config/db');
 
 const updateProduct = asyncHandler(async (req, res) => {
-    const productId = req.params.id; 
+    const productId = req.params.id;
 
-    const existingProduct =  db.start.query('SELECT * FROM items WHERE id = ?', [productId]);
+    const existingProduct =  db.query('SELECT * FROM items WHERE id = ?', [productId]);
 
     if (!existingProduct) {
         return res.status(404).json({ success: false, message: 'Product not found' });
@@ -19,11 +19,12 @@ const updateProduct = asyncHandler(async (req, res) => {
         description: req.body.description,
         image: req.body.image,
         recycled: req.body.recycled,
-        organic: req.body.organic
+        organic: req.body.organic,
+        price: req.body.price
     };
 
     try {
-        db.start.query('UPDATE items SET ? WHERE id = ?', [updatedProductData, productId]);
+        db.query('UPDATE items SET ? WHERE id = ?', [updatedProductData, productId]);
 
         res.status(200).json({ success: true, message: 'Product updated successfully' });
     } catch (error) {
