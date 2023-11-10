@@ -7,7 +7,6 @@ const deleteProduct = require('../controllers/deleteProduct');
 
 router.post('/product/create', async (req, res) => {
   try {
-    // Call the createProduct function to handle the creation logic
     await createProduct(req, res);
   } catch (error) {
     console.error(error);
